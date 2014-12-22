@@ -18,6 +18,7 @@ export GLUON_URL=${GLUON_URL:-"https://github.com/freifunk-gluon/gluon.git"}
 export GLUON_COMMIT=${GLUON_COMMIT:-"master"}
 export SITE_VERSION=${SITE_VERSION:-`date '+%Y%m%d'`}
 export SITE_BRANCH=${SITE_BRANCH:-"experimental"}
+export SITE_DIR=${SITE_DIR:-`pwd`}
 export WORKSPACE=${WORKSPACE:-`pwd`}
 
 # Compute more vars
@@ -39,8 +40,8 @@ git checkout -f $GLUON_COMMIT
 # Copy site config to gluon build directory
 test -d "$GLUON_DIR/site" && rm -rf "$GLUON_DIR/site"
 mkdir "$GLUON_DIR/site"
-cp site.conf "$GLUON_DIR/site/"
-cp site.mk "$GLUON_DIR/site/"
+cp "$SITE_DIR/site.conf" "$GLUON_DIR/site/"
+cp "$SITE_DIR/site.mk" "$GLUON_DIR/site/"
 
 # Update gluon, than build site 
 cd "$GLUON_DIR"

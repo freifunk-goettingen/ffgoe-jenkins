@@ -1,11 +1,12 @@
 # These are the defaults:
 # export GLUON_URL="https://github.com/freifunk-gluon/gluon.git"
-# export GLUON_VERSION="master"
+# export GLUON_COMMIT="master"
 # export SITE_VERSION=`git describe HEAD`
 # export SITE_BRANCH="experimental"
+# export SITE_DIR=`pwd`
 # export WORKSPACE=`pwd`
 
 # Example for a 'stable' build:
-# export GLUON_VERSION=v2014.3.1
+# export GLUON_COMMIT=v2014.3.1
 # export SITE_VERSION=`git describe HEAD`
 # export SITE_BRANCH=stable
