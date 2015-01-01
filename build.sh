@@ -17,7 +17,7 @@ test -f build.conf && . build.conf || (echo "Build config build.conf missing."; 
 export GLUON_URL=${GLUON_URL:-"https://github.com/freifunk-gluon/gluon.git"}
 export GLUON_COMMIT=${GLUON_COMMIT:-"master"}
 export SITE_VERSION=${SITE_VERSION:-`date '+%Y%m%d'`}
-export SITE_BRANCH=${SITE_BRANCH:-"experimental"}
+export SITE_MANIFEST=${SITE_MANIFEST:-""}
 export SITE_DIR=${SITE_DIR:-`pwd`}
 export WORKSPACE=${WORKSPACE:-`pwd`}
 
@@ -47,10 +47,12 @@ cp "$SITE_DIR/site.mk" "$GLUON_DIR/site/"
 cd "$GLUON_DIR"
 make update
 make clean
-make V=s "GLUON_RELEASE=$GLUON_RELEASE" "GLUON_BRANCH=$SITE_BRANCH"
+make V=s "GLUON_RELEASE=$GLUON_RELEASE"
 
-# Sign build
-cd "$GLUON_DIR"
-make manifest "GLUON_RELEASE=$GLUON_RELEASE" GLUON_BRANCH=$SITE_BRANCH
-sh contrib/sign.sh "$JENKINS_HOME/secret" "images/sysupgrade/$SITE_BRANCH.manifest"
+if [[ -n "$SITE_MANIFEST" ]]; then
+    # Sign build
+    cd "$GLUON_DIR"
+    make manifest "GLUON_RELEASE=$GLUON_RELEASE" GLUON_BRANCH=$SITE_MANIFEST
+    sh contrib/sign.sh "$JENKINS_HOME/secret" "images/sysupgrade/$SITE_MANIFEST.manifest"
+fi
 

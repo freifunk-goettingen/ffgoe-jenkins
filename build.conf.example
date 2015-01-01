@@ -9,4 +9,4 @@
 # Example for a 'stable' build:
 # export GLUON_COMMIT=v2014.3.1
 # export SITE_VERSION=`git describe HEAD`
-# export SITE_BRANCH=stable
+# export SITE_MANIFEST=stable
