@@ -47,7 +47,7 @@ cp "$SITE_DIR/site.mk" "$GLUON_DIR/site/"
 cd "$GLUON_DIR"
 make update
 make clean
-make V=s "GLUON_RELEASE=$GLUON_RELEASE"
+make -j8 V=s "GLUON_RELEASE=$GLUON_RELEASE"
 
 if [[ -n "$SITE_MANIFEST" ]]; then
     # Sign build
