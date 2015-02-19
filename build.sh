@@ -56,6 +56,4 @@ if [[ -n "$SITE_MANIFEST" ]]; then
     sh contrib/sign.sh "$JENKINS_HOME/secret" "images/sysupgrade/$SITE_MANIFEST.manifest"
 fi
 
-
-mv -vf images ..
-
+cp -vau images ..
